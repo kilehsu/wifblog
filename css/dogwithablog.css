@@ -1,0 +1,209 @@
+body {
+    background-color: #660b09;
+    background-image: url('../images/background-full.jpg');
+    background-position: top center;
+    background-repeat: repeat-y;
+}
+
+.navAndAds {
+    background :none;
+}
+.mainContent {
+    background :none;
+	text-align:center;
+}
+
+#header-container {
+    height:152px;
+}
+
+.boneNav{
+    width: 936px;
+    clear: right;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.bones{
+    float: left;
+    position: relative;
+    width: 131px;
+    margin-top: 16px;
+    margin-bottom: auto;
+}
+
+.bones a{
+    display: block;
+    margin-top: -5px;
+}
+
+.boneLogo{
+    float: left;
+    margin: auto;
+}
+.boneTimeslot{
+    float: left;
+    margin: auto;
+    margin-top: 21px;
+}
+
+.feed-item {
+    box-shadow: 0 1px 1px #620000;
+}
+
+.feed-group, .promo-header {
+    clear: both;
+}
+
+.show-module .sharegroup .comment {
+    background-image: url('../images/share-buttons-dwab.png');
+    color: #cc3333;
+}
+
+
+.show-module.collapse .sharegroup .comment:hover {
+    color: #620000;
+}
+
+.show-module .sharegroup .share {
+    background-image: url('../images/share-buttons-dwab.png');
+    color: #cc3333;
+}
+
+.show-module.collapse .sharegroup .share:hover {
+    color: #620000;
+}
+
+.show-module .cta {
+    color: #cc3333;
+}
+.show-module .cta:hover {
+    color: #620000;
+}
+
+.show-module h1 {
+    color: #333333;
+    text-align: left;
+}
+
+.show-module h1:hover {
+    color: #620000;
+}
+.show-module p {
+    text-align: left;
+}
+.feed-group > hgroup > h2, .feed-item > hgroup > h2, .promo-header > hgroup > h2, .pollModule .header {
+    background-image: url('/web/20121209001414im_/http://cdn3.dolimg.com/en-US/disneychannel/593/images/branded/dwab/sprites/filter-bar-dwab.png');
+    text-align: left;
+}
+
+.feed-group > hgroup > h2 .category, .feed-item > hgroup > h2 .category, .promo-header > hgroup > h2 .category, .pollModule .category {
+    font-weight: 800;
+    color: #cc3333;
+}
+
+.pollModule {
+    background-image: url("/web/20121209001414im_/http://cdn3.dolimg.com/en-US/disneychannel/593/images/branded/dwab/sprites/poll-bkgrd-dwab.png");
+}
+
+.pollModule button {
+    background-color: #cc3333;
+    border: 1px solid #cc3333;
+}
+
+.pollModule .choice label.text {
+    background-image: url('../images/poll-dwab.png');
+    color:#333333;
+}
+
+.pollModule .choice.noImage label.text {
+    background-image: url("../images/poll-dwab.png");
+}
+
+.pollModule .choice label.text:hover {
+    color:#620000;
+}
+
+.pollModule .resultText h2 {
+    color:#cc3333;
+}
+
+.pollModule button.submit:hover {
+    background-color: #620000;
+    border: 1px solid #620000;
+}
+.tabButton span {
+    background-image: url("../images/share-area-dwab.png") !important;
+}
+
+.tabButtons .tabButton {
+    background-image: url("../images/share-area-dwab.png");
+}
+
+.sendWrapper button {
+    background-color: #cc3333;
+    border: 1px solid #cc33333;
+}
+
+.sendWrapper button:hover {
+    background-color: #620000;
+    border: 1px solid #620000;
+}
+.show-module .close, .show-module .open {
+    border-color: #cc3333;
+    background-color: #cc3333;
+}
+
+.show-module .close:hover, .show-module .open:hover {
+    background-color: #620000;
+    border-color: #620000;
+}
+
+.game-text-close-button {
+    color: #cc3333;
+}
+
+.game-text-close-button:hover {
+    color: #620000;
+}
+
+.video-text-close-button {
+    color: #cc3333;
+}
+
+.video-text-close-button:hover {
+    color: #620000;
+}
+
+.shareEntryArea h2 {
+    text-align: left;
+}
+
+.recommendations h3 a {
+    color: #cc3333;
+}
+
+.recommendations h3 a:hover {
+    color: #620000;
+}
+
+/*
+     FILE ARCHIVED ON 00:14:14 Dec 09, 2012 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 22:26:30 Sep 13, 2024.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.713
+  exclusion.robots: 0.023
+  exclusion.robots.policy: 0.01
+  esindex: 0.015
+  cdx.remote: 21.146
+  LoadShardBlock: 186.803 (3)
+  PetaboxLoader3.datanode: 192.373 (4)
+  load_resource: 168.489
+  PetaboxLoader3.resolve: 134.646
+*/
