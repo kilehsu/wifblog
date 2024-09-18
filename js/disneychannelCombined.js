@@ -583,10 +583,39 @@ dct.ActivityFactory.prototype._videocontainer = function(element)
 }
 function Utils() {};
 
+// Modify the dispatch event to expand the comment box linked to Firebase
 Utils.dispatchEvent = function(element, eventName) {
-    if (element && eventName) {
-        $(element).trigger(eventName);
-    }
+  if (element && eventName === 'commentClick') {
+      // When comment button is clicked, show the related comment input form
+      var commentSection = $(element).next('.comment-input-section'); // Assuming .comment-input-section is the class of the text box container
+
+      if (commentSection.length > 0) {
+          commentSection.slideDown(); // Expand the text box area (can change to other effects like fadeIn)
+          commentSection.find('textarea').focus(); // Automatically focus on the textarea for better UX
+
+          // Optionally, if you want to load Firebase comments directly into the box:
+          var formId = commentSection.data('form-id'); // Assuming each comment section has a unique form ID to link with Firebase
+          loadCommentsFromFirebase(formId, commentSection); // Function to dynamically load comments
+
+      } else {
+          console.warn('No comment section found for element', element);
+      }
+  }
+};
+
+// Helper function to load Firebase comments dynamically into the expanded box
+function loadCommentsFromFirebase(formId, commentSection) {
+  const q = query(collection(db, `comments_${formId}`), orderBy('timestamp', 'desc'));
+  onSnapshot(q, (snapshot) => {
+      const commentsSection = commentSection.find('.comments-list');
+      commentsSection.empty(); // Clear any previous comments
+
+      snapshot.forEach(doc => {
+          const comment = doc.data();
+          const commentElement = $('<div>').text(comment.text);
+          commentsSection.append(commentElement);
+      });
+  });
 }
 
 Utils.scrollToElement = function(element, offset, duration, delay) {
@@ -738,7 +767,7 @@ function ShowModule(element, activityFactory, shareFactory) {
                 // trim the whitespace from the beginning and ending of the ShoutOut text
                 var trimmedName = $.trim(shoutOutParagraph.text());
                 // remove the special quote characters from the beginning and ending of the ShoutOut text.
-                trimmedName = trimmedName.replace(/â€?/g, '');
+                trimmedName = trimmedName.replace(/ï¿½?/g, '');
                 trimmedName = trimmedName.replace(/â€œ/g, '');
 
                 // build the ShoutOut link name for Analytics

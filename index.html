@@ -3,61 +3,100 @@
 
 <head>
     <!-- Add Firebase SDKs here -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyCc_0S9Ky9S4oW5yJbAy-c3SCAOuH0pRCc",
-            authDomain: "dogwifablog-15947.firebaseapp.com",
-            projectId: "dogwifablog-15947",
-            storageBucket: "dogwifablog-15947.appspot.com",
-            messagingSenderId: "732688521259",
-            appId: "1:732688521259:web:db43b8840ea99f081c726e",
-            measurementId: "G-XTMLPEN5XB"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-
-        // Initialize Firestore
-        const db = getFirestore(app);
-
-        // Handle comment submission
-        const commentForm = document.getElementById('comment-form');
-        commentForm.addEventListener('submit', async (e) => {
-            e.preventDefault();  // Prevent the page from reloading
-            const commentText = document.getElementById('comment-text').value;
-
-            try {
-                // Add comment to Firestore
-                await addDoc(collection(db, 'comments'), {
-                    text: commentText,
-                    timestamp: serverTimestamp()
+    <!-- Add Firebase SDKs here -->
+<!DOCTYPE html>
+<html>
+    <!DOCTYPE html>
+    <html>
+    
+    <head>
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+            import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+    
+            // Your Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyBt5hibVydYU1-XRvy6xm8HqAFCjypCDPM",
+                authDomain: "dogwifblog-b2997.firebaseapp.com",
+                projectId: "dogwifblog-b2997",
+                storageBucket: "dogwifblog-b2997.appspot.com",
+                messagingSenderId: "293268586075",
+                appId: "1:293268586075:web:6e1230b209ded0495b097e",
+                measurementId: "G-R16VCZJ5XC"
+            };
+    
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+    
+            // Function to handle comment submission
+            const handleCommentSubmission = async (formId) => {
+                const commentText = document.getElementById(`comment-text-${formId}`).value;
+                try {
+                    await addDoc(collection(db, `comments_${formId}`), {
+                        text: commentText,
+                        timestamp: serverTimestamp()
+                    });
+                    document.getElementById(`comment-text-${formId}`).value = ''; // Clear the form
+                } catch (error) {
+                    console.error("Error adding comment: ", error);
+                }
+            };
+    
+            // Function to display comments in real-time for each section
+            const displayComments = (formId) => {
+                const q = query(collection(db, `comments_${formId}`), orderBy('timestamp', 'desc'));
+                onSnapshot(q, (snapshot) => {
+                    const commentsSection = document.getElementById(`comments-section-${formId}`);
+                    commentsSection.innerHTML = '';  // Clear previous comments
+    
+                    snapshot.forEach(doc => {
+                        const comment = doc.data();
+                        const commentElement = document.createElement('div');
+                        commentElement.textContent = comment.text;
+                        commentsSection.appendChild(commentElement);
+                    });
                 });
-                document.getElementById('comment-text').value = ''; // Clear the form
-                console.log("Comment added successfully");
-            } catch (error) {
-                console.error("Error adding comment: ", error);
-            }
-        });
-
-        // Listen for new comments in real-time and display them
-        const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
-        onSnapshot(q, (snapshot) => {
-            const commentsSection = document.getElementById('comments-section');
-            commentsSection.innerHTML = '';  // Clear previous comments
-
-            snapshot.forEach(doc => {
-                const comment = doc.data();
-                const commentElement = document.createElement('div');
-                commentElement.textContent = comment.text;
-                commentsSection.appendChild(commentElement);
+            };
+    
+            window.addEventListener('DOMContentLoaded', () => {
+                // Dynamically get all comment forms and set up listeners for each one
+                const commentForms = document.querySelectorAll("[id^='comment-form-']");
+    
+                commentForms.forEach((commentForm) => {
+                    const formId = commentForm.id.split('-').pop(); // Extract the form ID number
+                    commentForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        handleCommentSubmission(formId);
+                    });
+                    displayComments(formId);
+                });
             });
-        });
-    </script>
+        </script>
+    </head>
+
+<body>
+    <!-- Comment section for article 1 -->
+    <form id="comment-form-1">
+        <textarea id="comment-text-1" placeholder="Write your comment for article 1..." required></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
+    <div id="comments-section-1"></div>
+
+    <!-- Comment section for article 2 -->
+    <form id="comment-form-2">
+        <textarea id="comment-text-2" placeholder="Write your comment for article 2..." required></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
+    <div id="comments-section-2"></div>
+
+    <!-- Comment section for article 3 -->
+    <form id="comment-form-3">
+        <textarea id="comment-text-3" placeholder="Write your comment for article 3..." required></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
+    <div id="comments-section-3"></div>
+</body>
+</html>
 </head>
 
 <body class="hasSuperAd">
@@ -400,7 +439,7 @@
                     </style>
 
 
-                    <button type="button" class="close" onclick="Utils.dispatchEvent(this, 'collapse')"
+                    <button type="button" class="close" onclick="Utils.dispatchEvent(this, 'commentClick')"
                         data-linkposition="Module2/article"
                         data-linkname="Module2/article/dwab/closebottom/Maybe We're Not That Far Apart">x Close</button>
                 </article>
